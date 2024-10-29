@@ -1,14 +1,23 @@
+'use client';
+import BalanceAmount from "@/components/BalanceAmount";
+import Button from "@/components/Button";
+
 export default function Home() {
+
+  const handleClickRepay = (event: React.MouseEvent<HTMLButtonElement>) => {
+    console.log('Button clicked in ParentComponent', event);
+  };
+
+  const handleClickBorrow = (event: React.MouseEvent<HTMLButtonElement>) => {
+    console.log('Button clicked in ParentComponent', event);
+  };
+
   return (
-    <div className="flex flex-col items-center">
-      <h1>Hello World</h1>
-      <h2>Hello World</h2>
-      <h3>Hello World</h3>
-      <p>Hello World</p>
-      <h1>$100,000</h1>
-      <h2>$100,000</h2>
-      <h3>$100,000</h3>
-      <p>$100,000</p>
-    </div>
+    <main className="flex flex-col items-center">
+      <BalanceAmount balanceType="Total Balance" balance={350} />
+      <BalanceAmount balanceType="Available Balance" balance={340} />
+      <Button handleClick={handleClickRepay} text="Repay" />
+      <Button handleClick={handleClickBorrow} text="Borrow" />
+    </main>
   );
 }
