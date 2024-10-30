@@ -1,5 +1,5 @@
 import { TransactionEntry } from "@/types/commonTypes";
-import { Status } from "@/types/enumTypes";
+import { TransactionStatus } from "@/types/enumTypes";
 import { formatDate, formatToDollar } from "@/utils/formatters";
 import React from "react";
 
@@ -13,7 +13,9 @@ const Transaction = ({
       <div className="flex gap-5 md:gap-8">
         <svg
           className={
-            status === Status.pending ? "size-5 text-amber-300" : "hidden"
+            status === TransactionStatus.pending
+              ? "size-5 text-amber-300"
+              : "hidden"
           }
           fill="currentColor"
           xmlns="http://www.w3.org/2000/svg"
@@ -24,7 +26,9 @@ const Transaction = ({
         </svg>
         <svg
           className={
-            status === Status.completed ? "size-5 text-green-500" : "hidden"
+            status === TransactionStatus.completed
+              ? "size-5 text-green-500"
+              : "hidden"
           }
           fill="currentColor"
           xmlns="http://www.w3.org/2000/svg"

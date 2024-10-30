@@ -1,7 +1,7 @@
 "use client";
 
 import { TransactionEntry } from "@/types/commonTypes";
-import { Status } from "@/types/enumTypes";
+import { TransactionStatus } from "@/types/enumTypes";
 import React, { useMemo, useState } from "react";
 import Button from "./Button";
 import FilterButton from "./FilterButton";
@@ -12,7 +12,7 @@ const TransactionList = ({
 }: {
   transactions: TransactionEntry[];
 }) => {
-  const [filter, setFilter] = useState<Status | "All">("All");
+  const [filter, setFilter] = useState<TransactionStatus | "All">("All");
   const [numberOfViewableTransactions, setNumberOfViewableTransactions] =
     useState<number>(5);
 
@@ -38,14 +38,14 @@ const TransactionList = ({
         <h1>Transactions</h1>
         <div className="flex gap-5">
           <FilterButton
-            handleClick={() => setFilter(Status.pending)}
-            text={Status.pending}
+            handleClick={() => setFilter(TransactionStatus.pending)}
+            text={TransactionStatus.pending}
             color="amber"
             filter={filter}
           />
           <FilterButton
-            handleClick={() => setFilter(Status.completed)}
-            text={Status.completed}
+            handleClick={() => setFilter(TransactionStatus.completed)}
+            text={TransactionStatus.completed}
             color="green"
             filter={filter}
           />

@@ -1,4 +1,4 @@
-import { Status, TransactionType } from "./enumTypes";
+import { TransactionStatus, TransactionType } from "./enumTypes";
 export interface TransactionEntry {
   id: number;
   date: Date;
@@ -6,15 +6,15 @@ export interface TransactionEntry {
   amount: number;
   balance: number;
   repaymentDate: Date;
-  status: Status;
+  status: TransactionStatus;
+}
+
+export interface ModalState {
+  isOpen: boolean;
+  modalType: TransactionType;
 }
 
 export interface DashBoardState {
   availableBalance: number;
   transactions: TransactionEntry[];
 }
-
-export type DashBoardAction = {
-  type: "ADD_TRANSACTION_AND_UPDATE_BALANCE";
-  payload: { amount: string; type: TransactionType };
-};

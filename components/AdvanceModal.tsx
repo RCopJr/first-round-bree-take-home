@@ -5,29 +5,28 @@ import React, { useState } from "react";
 import Button from "./Button";
 import ErrorAlert from "./ErrorAlert";
 
-const RequestAdvanceModal = ({
+const AdvanceModal = ({
   isOpen,
   onClose,
   availableBalance,
   onConfirm,
+  modalType,
 }: {
   isOpen: boolean;
   onClose: () => void;
   availableBalance: number;
-  onConfirm: (
-    e: React.MouseEvent<HTMLButtonElement>,
-    amount: string,
-    type: TransactionType
-  ) => void;
+  onConfirm: (amount: string, type: TransactionType) => void;
+  modalType: TransactionType;
 }) => {
-  const [requestedAmount, setRequestedAmount] = useState<string>("");
-  const [requestConfirmed, setRequestConfirmed] = useState<boolean>(false);
+  const [amount, setAmount] = useState<string>("");
+  const [transactionIsConfirmed, setTransactionIsConfirmed] =
+    useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
 
-  const handleRequestAmountInputChange = (
+  const handleAmountInputChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    setRequestedAmount(event.target.value.slice(1));
+    setAmount(event.target.value.slice(1));
   };
 
   return (
@@ -42,16 +41,19 @@ const RequestAdvanceModal = ({
           <Button
             text="Cancel"
             handleClick={() => {
-              setRequestConfirmed(false);
-              setRequestedAmount("");
+              setTransactionIsConfirmed(false);
+              setAmount("");
+              setErrorMessage("");
               return onClose();
             }}
           />
         </div>
-        {requestConfirmed ? (
+        {transactionIsConfirmed ? (
           <div className="flex flex-col items-center gap-6">
             <h2 className="text-center text-5xl font-extrabold">
-              You have requested ${formatToDollar(Number(requestedAmount))}
+              You have{" "}
+              {modalType == TransactionType.repayment ? "repaid" : "requested"}{" "}
+              ${formatToDollar(Number(amount))}
             </h2>
             <p className="pl-4 font-extrabold">It will be processed shortly.</p>
           </div>
@@ -62,13 +64,14 @@ const RequestAdvanceModal = ({
               ${formatToDollar(availableBalance)}
             </p>
             <h2 className="font-extrabold">
-              How much would you like to request?
+              How much would you like to{" "}
+              {modalType == TransactionType.repayment ? "repay" : "request"}?
             </h2>
             <input
               type="text"
-              placeholder="Enter Dollar Amount"
-              value={"$" + requestedAmount}
-              onChange={handleRequestAmountInputChange}
+              placeholder="0.00"
+              value={"$" + amount}
+              onChange={handleAmountInputChange}
               className="w-5/6 sm:w-1/2 border border-gray-300 rounded-lg px-4 py-2 text-5xl font-extrabold"
             />
             {errorMessage && <ErrorAlert text={errorMessage} />}
@@ -76,12 +79,13 @@ const RequestAdvanceModal = ({
         )}
 
         <div className="flex justify-center w-full">
-          {requestConfirmed ? (
+          {transactionIsConfirmed ? (
             <Button
               text="Close"
               handleClick={() => {
-                setRequestConfirmed(false);
-                setRequestedAmount("");
+                setTransactionIsConfirmed(false);
+                setAmount("");
+                setErrorMessage("");
                 return onClose();
               }}
             />
@@ -89,21 +93,24 @@ const RequestAdvanceModal = ({
             <Button
               text="Confirm"
               handleClick={(e) => {
-                const amountNumber = Number(requestedAmount);
+                const amountNumber = Number(amount);
                 if (
                   typeof amountNumber !== "number" ||
                   amountNumber <= 0 ||
                   !Number.isFinite(amountNumber)
                 ) {
                   setErrorMessage("Please enter a valid dollar amount.");
-                } else if (amountNumber > availableBalance) {
+                } else if (
+                  modalType === TransactionType.advance &&
+                  amountNumber > availableBalance
+                ) {
                   setErrorMessage(
                     "Please enter an amount that is less than your available balance."
                   );
                 } else {
                   setErrorMessage("");
-                  setRequestConfirmed(true);
-                  return onConfirm(e, requestedAmount, TransactionType.advance);
+                  setTransactionIsConfirmed(true);
+                  return onConfirm(amount, modalType);
                 }
               }}
             />
@@ -114,4 +121,4 @@ const RequestAdvanceModal = ({
   );
 };
 
-export default RequestAdvanceModal;
+export default AdvanceModal;
