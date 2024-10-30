@@ -91,6 +91,7 @@ During development, many design improvements were made on top of my intial figma
 - Added business day wait times to give users a more comfortable sense of how long they needed to wait for a transaction to be complete
 - Added a "Total Completed Cash Advance Balance" alongside the "Available Cash Advance Balance" to show users what their current balance is considering only completed transactions. This was added as I considered it an important piece of information that allows users to know how much they have planned to borrow or repay regardless of the status of pending transactions.
 - Added the account balance alongside the transaction data for each transaction.
+- Added a "See More" button to allow users to expand their transaction list in cases where they would want
 
 ## Challenges
 
