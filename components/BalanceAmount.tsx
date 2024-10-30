@@ -9,9 +9,9 @@ const BalanceAmount = ({
   balance: number;
 }) => {
   return (
-    <div className="flex flex-col gap-2 items-center sm:items-start">
-      <h1 className="text-slate-500 text-xs">{balanceType}</h1>
-      <p className="text-slate-950 text-5xl font-extrabold">
+    <div className="flex flex-col items-center gap-2 sm:items-start">
+      <h1 className="text-xs text-slate-500">{balanceType}</h1>
+      <p className="text-5xl font-extrabold text-slate-950">
         ${formatToDollar(balance)}
       </p>
     </div>

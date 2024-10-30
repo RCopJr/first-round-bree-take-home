@@ -28,31 +28,29 @@ const TransactionList = ({
 
   const handleClickSeeMore = () => {
     setNumberOfViewableTransactions(
-      (prevNumberOfViewableTransactions) => prevNumberOfViewableTransactions + 5
+      (prevNumberOfViewableTransactions) =>
+        prevNumberOfViewableTransactions + 5,
     );
   };
 
   return (
-    <div className="w-full border border-slate-500 rounded-lg">
-      <div className="px-6 py-5 border-b flex flex-wrap justify-between items-center gap-5">
+    <div className="w-full rounded-lg border border-slate-500">
+      <div className="flex flex-wrap items-center justify-between gap-5 border-b px-6 py-5">
         <h1>Transactions</h1>
         <div className="flex gap-5">
           <FilterButton
             handleClick={() => setFilter(TransactionStatus.pending)}
             text={TransactionStatus.pending}
-            color="amber"
             filter={filter}
           />
           <FilterButton
             handleClick={() => setFilter(TransactionStatus.completed)}
             text={TransactionStatus.completed}
-            color="green"
             filter={filter}
           />
           <FilterButton
             handleClick={() => setFilter("All")}
             text="All"
-            color="slate"
             filter={filter}
           />
         </div>
@@ -64,7 +62,7 @@ const TransactionList = ({
             <Transaction key={transaction.id} transaction={transaction} />
           ))}
       </ol>
-      <div className="px-6 py-10 flex justify-end items-center h-16">
+      <div className="flex h-16 items-center justify-end px-6 py-10">
         {visibleTransactions.length > numberOfViewableTransactions && (
           <Button handleClick={handleClickSeeMore} text="See More" />
         )}

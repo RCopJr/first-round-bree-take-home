@@ -24,19 +24,19 @@ const AdvanceModal = ({
   const [errorMessage, setErrorMessage] = useState<string>("");
 
   const handleAmountInputChange = (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     setAmount(event.target.value.slice(1));
   };
 
   return (
     <div
-      className={`fixed inset-0 flex items-center justify-center bg-slate-950 bg-opacity-50 z-20 transition-opacity transform ease-in-out duration-300 motion-reduce:transition-none ${isOpen ? "scale-100 opacity-100" : `scale-0 opacity-0`}`}
+      className={`fixed inset-0 z-20 flex transform items-center justify-center bg-slate-950 bg-opacity-50 transition-opacity duration-300 ease-in-out motion-reduce:transition-none ${isOpen ? "scale-100 opacity-100" : `scale-0 opacity-0`}`}
     >
       <div
-        className={`flex flex-col justify-between gap-12 bg-white p-6 rounded-lg shadow-lg max-w-lg w-5/6 sm:w-full transition-transform transform ease-in-out duration-300 motion-reduce:transition-none ${isOpen ? "scale-100" : "scale-0"}`}
+        className={`flex w-5/6 max-w-lg transform flex-col justify-between gap-12 rounded-lg bg-white p-6 shadow-lg transition-transform duration-300 ease-in-out motion-reduce:transition-none sm:w-full ${isOpen ? "scale-100" : "scale-0"}`}
       >
-        <div className="flex justify-between items-center">
+        <div className="flex items-center justify-between">
           <h1 className="text-sm text-slate-500">Request a Cash Advance</h1>
           <Button
             text="Back"
@@ -74,7 +74,7 @@ const AdvanceModal = ({
               placeholder="0.00"
               value={"$" + amount}
               onChange={handleAmountInputChange}
-              className="w-5/6 sm:w-1/2 border border-gray-300 rounded-lg px-4 py-2 text-5xl font-extrabold"
+              className="w-5/6 rounded-lg border border-gray-300 px-4 py-2 text-5xl font-extrabold sm:w-1/2"
             />
             <span className="font-extrabold text-slate-500">
               Your funds will be available within 1-2 business days.
@@ -83,7 +83,7 @@ const AdvanceModal = ({
           </div>
         )}
 
-        <div className="flex justify-center w-full">
+        <div className="flex w-full justify-center">
           {transactionIsConfirmed ? (
             <Button
               text="Close"
@@ -97,7 +97,7 @@ const AdvanceModal = ({
           ) : (
             <Button
               text="Confirm"
-              handleClick={(e) => {
+              handleClick={() => {
                 const amountNumber = Number(amount);
                 if (
                   typeof amountNumber !== "number" ||
@@ -110,7 +110,7 @@ const AdvanceModal = ({
                   amountNumber > availableBalance
                 ) {
                   setErrorMessage(
-                    "Please enter an amount that is less than your available balance."
+                    "Please enter an amount that is less than your available balance.",
                   );
                 } else {
                   setErrorMessage("");

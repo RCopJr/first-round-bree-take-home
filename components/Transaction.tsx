@@ -9,7 +9,7 @@ const Transaction = ({
   transaction: TransactionEntry;
 }) => {
   return (
-    <li className="relative group flex gap-3 sm:gap-5 border-b px-6 py-5 items-center justify-between text-sm overflow-hidden">
+    <li className="group relative flex items-center justify-between gap-3 overflow-hidden border-b px-6 py-5 text-sm sm:gap-5">
       <div className="flex gap-5 md:gap-8">
         <svg
           className={
@@ -56,7 +56,7 @@ const Transaction = ({
           ${formatToDollar(balance)}
         </span>
       </div>
-      <div className="flex gap-5 justify-start items-center absolute top-0 right-0 h-full bg-white z-10 transition-all translate-x-full duration-300 ease-in-out rounded-lg border group-hover:translate-x-0 w-full sm:group-hover:translate-x-1/2">
+      <div className="absolute right-0 top-0 z-10 flex h-full w-full translate-x-full items-center justify-start gap-5 rounded-lg border bg-white transition-all duration-300 ease-in-out group-hover:translate-x-0 sm:group-hover:translate-x-1/2">
         <span className="ml-6">ID: {id}</span>
         <span>Repayment Date: {formatDate(repaymentDate)}</span>
       </div>

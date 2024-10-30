@@ -9,9 +9,9 @@ const Button = ({
 }) => {
   return (
     <div className="relative flex items-center justify-center">
-      <div className="absolute inset-0 bg-slate-400 rounded-lg"></div>
+      <div className="absolute inset-0 rounded-lg bg-slate-400"></div>
       <button
-        className="w-28 text-sm border bg-white border-slate-400 py-2 px-4 rounded-lg z-10 -translate-x-1 -translate-y-1 transition-transform transform hover:translate-x-0 hover:translate-y-0 motion-reduce:transition-none"
+        className="z-10 w-28 -translate-x-1 -translate-y-1 transform rounded-lg border border-slate-400 bg-white px-4 py-2 text-sm transition-transform hover:translate-x-0 hover:translate-y-0 motion-reduce:transition-none"
         onClick={(e) => handleClick(e)}
       >
         {text}

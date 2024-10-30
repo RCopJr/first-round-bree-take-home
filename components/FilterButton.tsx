@@ -4,12 +4,10 @@ import React from "react";
 const FilterButton = ({
   text,
   handleClick,
-  color,
   filter,
 }: {
   text: TransactionStatus | "All";
   handleClick: React.MouseEventHandler<HTMLButtonElement>;
-  color: string;
   filter: string;
 }) => {
   const bgColor =
@@ -29,7 +27,7 @@ const FilterButton = ({
     <div className="relative flex items-center justify-center">
       <div className={`absolute inset-0 ${bgColor} rounded-lg`}></div>
       <button
-        className={`text-sm border bg-white ${borderColor} py-2 px-4 rounded-lg z-10 ${filter === text ? "" : "-translate-x-1 -translate-y-1"} transition-transform transform hover:translate-x-0 hover:translate-y-0 motion-reduce:transition-none`}
+        className={`border bg-white text-sm ${borderColor} z-10 rounded-lg px-4 py-2 ${filter === text ? "" : "-translate-x-1 -translate-y-1"} transform transition-transform hover:translate-x-0 hover:translate-y-0 motion-reduce:transition-none`}
         onClick={(e) => handleClick(e)}
       >
         {text}

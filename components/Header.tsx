@@ -2,7 +2,7 @@ import React from "react";
 
 const Header = () => {
   return (
-    <header className="flex justify-between px-6 py-6 text-lg font-extrabold border text-slate-950">
+    <header className="flex justify-between border px-6 py-6 text-lg font-extrabold text-slate-950">
       Cash Advance Dashboard
       <svg
         className="size-6"
