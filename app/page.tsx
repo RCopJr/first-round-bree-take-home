@@ -30,7 +30,7 @@ const transactions: TransactionEntry[] = [
     amount: 10,
     balance: 340,
     repaymentDate: new Date(),
-    status: "pending",
+    status: "success",
   },
   {
     id: 4,
@@ -39,7 +39,7 @@ const transactions: TransactionEntry[] = [
     amount: 10,
     balance: 340,
     repaymentDate: new Date(),
-    status: "pending",
+    status: "success",
   },
   {
     id: 5,
@@ -48,7 +48,7 @@ const transactions: TransactionEntry[] = [
     amount: 10,
     balance: 340,
     repaymentDate: new Date(),
-    status: "pending",
+    status: "success",
   },
 ];
 
