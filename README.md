@@ -2,17 +2,25 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Running the App
 
-First, run the development server:
+First, install the dependencies. Navigate to the root folder of the project within a terminal and run this command:
+
+```bash
+npm install
+```
+
+If some dependencies do not install, make sure you are using Node version `v20.18.0`
+
+Then, run the development server:
 
 ```bash
 npm run dev
 ```
 
-Then, open [http://localhost:3000](http://localhost:3000) with your browser to see the dashboard.
+Once the server is running, open [http://localhost:3000](http://localhost:3000) with your browser to see the dashboard.
 
 ## Testing the App
 
-I have created basic tests for the main page component of the application. To perform these unit, tests run the command below:
+I have created basic tests for the main page component of the application. To perform these unit tests run the command below:
 
 ```bash
 npm run test
@@ -20,7 +28,7 @@ npm run test
 
 ## Design Decisions
 
-During the design phase the main aspects that were considered were my use of spacing, color schemes, typography, consistency with similar apps, and accessibility. My initial design phase itself consisted of creating high-level figma mock-ups that were iteratively improved to adhere to these principles:
+During the design phase the main aspects that were considered were my use of friendly/approachable design, spacing, color schemes, typography, consistency with similar apps, and accessibility. My initial design phase itself consisted of creating high-level figma mock-ups that were iteratively improved to adhere to these principles:
 
 #### Friendliness
 
