@@ -26,7 +26,7 @@ const TransactionList = ({
     });
   }, [filter, transactions, numberOfViewableTransactions]);
 
-  const handleClickSeeMore = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClickSeeMore = () => {
     setNumberOfViewableTransactions(
       (prevNumberOfViewableTransactions) => prevNumberOfViewableTransactions + 5
     );
