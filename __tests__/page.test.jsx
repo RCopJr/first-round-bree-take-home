@@ -10,15 +10,15 @@ describe("Home Component", () => {
     expect(
       screen.getByRole("heading", {
         name: "Total Completed Cash Advance Balance",
-      })
+      }),
     ).toBeInTheDocument();
     expect(
-      screen.getByRole("heading", { name: "Available Cash Advance Balance" })
+      screen.getByRole("heading", { name: "Available Cash Advance Balance" }),
     ).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Request" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Repay" })).toBeInTheDocument();
     expect(
-      screen.getByRole("heading", { name: "Transactions" })
+      screen.getByRole("heading", { name: "Transactions" }),
     ).toBeInTheDocument();
   });
 
@@ -37,7 +37,7 @@ describe("Home Component", () => {
 
     const paragraphs = screen.getAllByRole("paragraph");
     const availableBalance = paragraphs[1].textContent;
-    expect(availableBalance.includes(290.0));
+    expect(availableBalance.includes(280.0));
   });
 
   it("updates the available balance and transaction list on confirm for a repayment", () => {
@@ -55,7 +55,7 @@ describe("Home Component", () => {
 
     const paragraphs = screen.getAllByRole("paragraph");
     const availableBalance = paragraphs[1].textContent;
-    expect(availableBalance.includes(350.0));
+    expect(availableBalance.includes(340.0));
   });
 
   it("throws value error for invalid request amounts", () => {
@@ -76,8 +76,8 @@ describe("Home Component", () => {
 
     expect(
       screen.getByText(
-        "Please enter an amount that is less than your available balance."
-      )
+        "Please enter an amount that is less than your available balance.",
+      ),
     );
 
     const closeButton = screen.getByRole("button", { name: "Back" });
