@@ -39,7 +39,7 @@ const AdvanceModal = ({
         <div className="flex justify-between items-center">
           <h1 className="text-sm text-slate-500">Request a Cash Advance</h1>
           <Button
-            text="Cancel"
+            text="Back"
             handleClick={() => {
               setTransactionIsConfirmed(false);
               setAmount("");

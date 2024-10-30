@@ -100,48 +100,51 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col justify-between">
-      <Header />
-      <main className="w-5/6 md:w-3/4 xl:w-2/3 2xl:w-1/2 flex flex-col items-center gap-10 my-20 mx-auto">
-        <div className="w-full flex justify-center sm:justify-start sm:gap-14">
-          <span className="hidden sm:inline-block">
-            <BalanceAmount balanceType="Total Balance" balance={350} />
-          </span>
-          <BalanceAmount
-            balanceType="Available Balance"
-            balance={dashboardState.availableBalance}
-          />
-        </div>
-        <div className="w-full flex justify-center sm:justify-start gap-5 sm:gap-10">
-          <Button
-            handleClick={() =>
-              setModalState({
-                isOpen: true,
-                modalType: TransactionType.advance,
-              })
-            }
-            text="Request"
-          />
-          <Button
-            handleClick={() =>
-              setModalState({
-                isOpen: true,
-                modalType: TransactionType.repayment,
-              })
-            }
-            text="Repay"
-          />
-        </div>
+      <div>
+        <Header />
+        <main className="w-5/6 md:w-3/4 xl:w-2/3 2xl:w-1/2 flex flex-col items-center gap-10 my-20 mx-auto">
+          <div className="w-full flex justify-center sm:justify-start sm:gap-14">
+            <span className="hidden sm:inline-block">
+              <BalanceAmount balanceType="Total Balance" balance={350} />
+            </span>
+            <BalanceAmount
+              balanceType="Available Balance"
+              balance={dashboardState.availableBalance}
+            />
+          </div>
+          <div className="w-full flex justify-center sm:justify-start gap-5 sm:gap-10">
+            <Button
+              handleClick={() =>
+                setModalState({
+                  isOpen: true,
+                  modalType: TransactionType.advance,
+                })
+              }
+              text="Request"
+            />
+            <Button
+              handleClick={() =>
+                setModalState({
+                  isOpen: true,
+                  modalType: TransactionType.repayment,
+                })
+              }
+              text="Repay"
+            />
+          </div>
 
-        <TransactionList transactions={dashboardState.transactions} />
+          <TransactionList transactions={dashboardState.transactions} />
 
-        <AdvanceModal
-          isOpen={modalState.isOpen}
-          onClose={closeAdvanceModal}
-          availableBalance={dashboardState.availableBalance}
-          onConfirm={onConfirm}
-          modalType={modalState.modalType}
-        />
-      </main>
+          <AdvanceModal
+            isOpen={modalState.isOpen}
+            onClose={closeAdvanceModal}
+            availableBalance={dashboardState.availableBalance}
+            onConfirm={onConfirm}
+            modalType={modalState.modalType}
+          />
+        </main>
+      </div>
+
       <Footer />
     </div>
   );

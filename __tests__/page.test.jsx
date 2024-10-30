@@ -78,7 +78,7 @@ describe("Home Component", () => {
       )
     );
 
-    const closeButton = screen.getByRole("button", { name: "Cancel" });
+    const closeButton = screen.getByRole("button", { name: "Back" });
     fireEvent.click(closeButton);
   });
   it("throws value error for invalid repay amounts", () => {
@@ -93,7 +93,7 @@ describe("Home Component", () => {
 
     expect(screen.getByText("Please enter a valid dollar amount."));
 
-    const closeButton = screen.getByRole("button", { name: "Cancel" });
+    const closeButton = screen.getByRole("button", { name: "Back" });
     fireEvent.click(closeButton);
   });
 });
