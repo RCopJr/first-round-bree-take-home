@@ -37,7 +37,10 @@ const AdvanceModal = ({
         className={`flex w-5/6 max-w-lg transform flex-col justify-between gap-12 rounded-lg bg-white p-6 shadow-lg transition-transform duration-300 ease-in-out motion-reduce:transition-none sm:w-full ${isOpen ? "scale-100" : "scale-0"}`}
       >
         <div className="flex items-center justify-between">
-          <h1 className="text-sm text-slate-500">Request a Cash Advance</h1>
+          <h1 className="text-sm text-slate-500">
+            {modalType == TransactionType.repayment ? "Repay" : "Request"} a
+            Cash Advance
+          </h1>
           <Button
             text="Back"
             handleClick={() => {

@@ -11,32 +11,30 @@ const Transaction = ({
   return (
     <li className="group relative flex items-center justify-between gap-3 overflow-hidden border-b px-6 py-5 text-sm sm:gap-5">
       <div className="flex gap-5 md:gap-8">
-        <svg
-          className={
-            status === TransactionStatus.pending
-              ? "size-5 text-amber-300"
-              : "hidden"
-          }
-          fill="currentColor"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 496 512"
-        >
-          {/* <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--> */}
-          <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z" />
-        </svg>
-        <svg
-          className={
-            status === TransactionStatus.completed
-              ? "size-5 text-blue-600"
-              : "hidden"
-          }
-          fill="currentColor"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 448 512"
-        >
-          {/* <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--> */}
-          <path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
-        </svg>
+        {status === TransactionStatus.pending && (
+          <svg
+            className="size-5 text-amber-300"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 496 512"
+          >
+            {/* <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--> */}
+            <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z" />
+          </svg>
+        )}
+
+        {status === TransactionStatus.completed && (
+          <svg
+            className="size-5 text-blue-600"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 448 512"
+          >
+            {/* <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--> */}
+            <path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
+          </svg>
+        )}
+
         <span>{formatDate(date)}</span>
         <span className="hidden sm:inline-block">{type}</span>
       </div>

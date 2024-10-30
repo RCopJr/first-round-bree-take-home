@@ -24,7 +24,7 @@ const TransactionList = ({
         return true;
       }
     });
-  }, [filter, transactions, numberOfViewableTransactions]);
+  }, [filter, transactions]);
 
   const handleClickSeeMore = () => {
     setNumberOfViewableTransactions(
