@@ -59,7 +59,9 @@ const AdvanceModal = ({
           </div>
         ) : (
           <div className="flex flex-col gap-6">
-            <h2 className="font-extrabold">Current available balance:</h2>
+            <h2 className="font-extrabold">
+              Current available balance to borrow:
+            </h2>
             <p className="pl-4 text-5xl font-extrabold">
               ${formatToDollar(availableBalance)}
             </p>
@@ -74,6 +76,9 @@ const AdvanceModal = ({
               onChange={handleAmountInputChange}
               className="w-5/6 sm:w-1/2 border border-gray-300 rounded-lg px-4 py-2 text-5xl font-extrabold"
             />
+            <span className="font-extrabold text-slate-500">
+              Your funds will be available within 1-2 business days.
+            </span>
             {errorMessage && <ErrorAlert text={errorMessage} />}
           </div>
         )}

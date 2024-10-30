@@ -1,5 +1,5 @@
 import { TransactionEntry } from "@/types/commonTypes";
-import { TransactionStatus } from "@/types/enumTypes";
+import { TransactionStatus, TransactionType } from "@/types/enumTypes";
 import { formatDate, formatToDollar } from "@/utils/formatters";
 import React from "react";
 
@@ -27,7 +27,7 @@ const Transaction = ({
         <svg
           className={
             status === TransactionStatus.completed
-              ? "size-5 text-green-500"
+              ? "size-5 text-blue-600"
               : "hidden"
           }
           fill="currentColor"
@@ -41,8 +41,14 @@ const Transaction = ({
         <span className="hidden sm:inline-block">{type}</span>
       </div>
       <div className="grid grid-cols-1 gap-2 sm:grid-cols-3 sm:gap-5 md:gap-8 xl:gap-14">
-        <span className={type === "Repayment" ? "col-start-1" : "col-start-2"}>
-          {type === "Repayment"
+        <span
+          className={
+            type === TransactionType.repayment
+              ? "col-start-1 text-green-600"
+              : "col-start-2"
+          }
+        >
+          {type === TransactionType.repayment
             ? `+ $${formatToDollar(amount)}`
             : `- $${formatToDollar(amount)}`}
         </span>

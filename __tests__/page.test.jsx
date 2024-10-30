@@ -8,10 +8,12 @@ describe("Home Component", () => {
   it("renders the header, balance amounts, buttons, and footer", () => {
     render(<Home />);
     expect(
-      screen.getByRole("heading", { name: "Total Balance" })
+      screen.getByRole("heading", {
+        name: "Total Completed Cash Advance Balance",
+      })
     ).toBeInTheDocument();
     expect(
-      screen.getByRole("heading", { name: "Available Balance" })
+      screen.getByRole("heading", { name: "Available Cash Advance Balance" })
     ).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Request" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Repay" })).toBeInTheDocument();
