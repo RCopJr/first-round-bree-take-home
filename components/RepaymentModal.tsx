@@ -32,7 +32,7 @@ const RepaymentModal = ({
 
   return (
     <div
-      className={`fixed inset-0 flex items-center justify-center bg-blue-600 bg-opacity-50 z-20 transition-opacity transform ease-in-out duration-300 motion-reduce:transition-none ${isOpen ? "scale-100 opacity-100" : `scale-0 opacity-0`}`}
+      className={`fixed inset-0 flex items-center justify-center bg-slate-950 bg-opacity-50 z-20 transition-opacity transform ease-in-out duration-300 motion-reduce:transition-none ${isOpen ? "scale-100 opacity-100" : `scale-0 opacity-0`}`}
     >
       <div
         className={`flex flex-col justify-between gap-12 bg-white p-6 rounded-lg shadow-lg max-w-lg w-5/6 sm:w-full transition-transform transform ease-in-out duration-300 motion-reduce:transition-none ${isOpen ? "scale-100" : "scale-0"}`}
