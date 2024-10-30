@@ -3,6 +3,7 @@ import { TransactionType } from "@/types/enumTypes";
 import { formatToDollar } from "@/utils/formatters";
 import React, { useState } from "react";
 import Button from "./Button";
+import ErrorAlert from "./ErrorAlert";
 
 const RepaymentModal = ({
   isOpen,
@@ -21,6 +22,7 @@ const RepaymentModal = ({
 }) => {
   const [repaymentAmount, setRepaymentAmount] = useState<string>("");
   const [repaymentConfirmed, setRepaymentConfirmed] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
   const handleRepaymentAmountInputChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -28,11 +30,13 @@ const RepaymentModal = ({
     setRepaymentAmount(event.target.value.slice(1));
   };
 
-  if (!isOpen) return null;
-
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-slate-950 bg-opacity-50 z-20">
-      <div className="flex flex-col justify-between gap-12 bg-white p-6 rounded-lg shadow-lg max-w-lg w-5/6 sm:w-full">
+    <div
+      className={`fixed inset-0 flex items-center justify-center bg-slate-950 bg-opacity-50 z-20 transition-opacity transform ease-in-out duration-300 ${isOpen ? "scale-100 opacity-100" : `scale-0 opacity-0`}`}
+    >
+      <div
+        className={`flex flex-col justify-between gap-12 bg-white p-6 rounded-lg shadow-lg max-w-lg w-5/6 sm:w-full transition-transform transform ease-in-out duration-300 ${isOpen ? "scale-100" : "scale-0"}`}
+      >
         <div className="flex justify-between items-center">
           <h1 className="text-sm text-slate-500">Request a Cash Advance</h1>
           <Button
@@ -67,6 +71,7 @@ const RepaymentModal = ({
               onChange={handleRepaymentAmountInputChange}
               className="w-1/2 border border-gray-300 rounded-lg px-4 py-2 text-5xl font-extrabold"
             />
+            {errorMessage && <ErrorAlert text={errorMessage} />}
           </div>
         )}
 
@@ -84,8 +89,22 @@ const RepaymentModal = ({
             <Button
               text="Confirm"
               handleClick={(e) => {
-                setRepaymentConfirmed(true);
-                return onConfirm(e, repaymentAmount, TransactionType.repayment);
+                const amountNumber = Number(repaymentAmount);
+                if (
+                  typeof amountNumber !== "number" ||
+                  amountNumber <= 0 ||
+                  !Number.isFinite(amountNumber)
+                ) {
+                  setErrorMessage("Please enter a valid dollar amount.");
+                } else {
+                  setErrorMessage("");
+                  setRepaymentConfirmed(true);
+                  return onConfirm(
+                    e,
+                    repaymentAmount,
+                    TransactionType.repayment
+                  );
+                }
               }}
             />
           )}

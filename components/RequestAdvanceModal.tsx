@@ -3,6 +3,7 @@ import { TransactionType } from "@/types/enumTypes";
 import { formatToDollar } from "@/utils/formatters";
 import React, { useState } from "react";
 import Button from "./Button";
+import ErrorAlert from "./ErrorAlert";
 
 const RequestAdvanceModal = ({
   isOpen,
@@ -21,6 +22,7 @@ const RequestAdvanceModal = ({
 }) => {
   const [requestedAmount, setRequestedAmount] = useState<string>("");
   const [requestConfirmed, setRequestConfirmed] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
   const handleRequestAmountInputChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -28,11 +30,13 @@ const RequestAdvanceModal = ({
     setRequestedAmount(event.target.value.slice(1));
   };
 
-  if (!isOpen) return null;
-
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-slate-950 bg-opacity-50 z-20">
-      <div className="flex flex-col justify-between gap-12 bg-white p-6 rounded-lg shadow-lg max-w-lg w-5/6 sm:w-full">
+    <div
+      className={`fixed inset-0 flex items-center justify-center bg-slate-950 bg-opacity-50 z-20 transition-opacity transform ease-in-out duration-300 ${isOpen ? "scale-100 opacity-100" : `scale-0 opacity-0`}`}
+    >
+      <div
+        className={`flex flex-col justify-between gap-12 bg-white p-6 rounded-lg shadow-lg max-w-lg w-5/6 sm:w-full transition-transform transform ease-in-out duration-300 ${isOpen ? "scale-100" : "scale-0"}`}
+      >
         <div className="flex justify-between items-center">
           <h1 className="text-sm text-slate-500">Request a Cash Advance</h1>
           <Button
@@ -67,6 +71,7 @@ const RequestAdvanceModal = ({
               onChange={handleRequestAmountInputChange}
               className="w-1/2 border border-gray-300 rounded-lg px-4 py-2 text-5xl font-extrabold"
             />
+            {errorMessage && <ErrorAlert text={errorMessage} />}
           </div>
         )}
 
@@ -84,8 +89,22 @@ const RequestAdvanceModal = ({
             <Button
               text="Confirm"
               handleClick={(e) => {
-                setRequestConfirmed(true);
-                return onConfirm(e, requestedAmount, TransactionType.advance);
+                const amountNumber = Number(requestedAmount);
+                if (
+                  typeof amountNumber !== "number" ||
+                  amountNumber <= 0 ||
+                  !Number.isFinite(amountNumber)
+                ) {
+                  setErrorMessage("Please enter a valid dollar amount.");
+                } else if (amountNumber > availableBalance) {
+                  setErrorMessage(
+                    "Please enter an amount that is less than your available balance."
+                  );
+                } else {
+                  setErrorMessage("");
+                  setRequestConfirmed(true);
+                  return onConfirm(e, requestedAmount, TransactionType.advance);
+                }
               }}
             />
           )}
