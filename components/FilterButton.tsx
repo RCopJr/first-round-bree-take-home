@@ -15,13 +15,13 @@ const FilterButton = ({
       ? "bg-amber-300"
       : text === TransactionStatus.completed
         ? "bg-blue-600"
-        : "bg-slate-400";
+        : "bg-slate-950";
   const borderColor =
     text === TransactionStatus.pending
       ? "border-amber-300"
       : text === TransactionStatus.completed
         ? "border-blue-600"
-        : "border-slate-400";
+        : "border-slate-950";
 
   return (
     <div className="relative flex items-center justify-center">
