@@ -1,3 +1,4 @@
+import { Status } from "./enumTypes";
 export interface TransactionEntry {
   id: number;
   date: Date;
@@ -5,5 +6,5 @@ export interface TransactionEntry {
   amount: number;
   balance: number;
   repaymentDate: Date;
-  status: string;
+  status: Status;
 }

@@ -1,4 +1,5 @@
 import { TransactionEntry } from "@/types/commonTypes";
+import { Status } from "@/types/enumTypes";
 import { formatDate, formatToDollar } from "@/utils/formatters";
 import React from "react";
 
@@ -11,7 +12,9 @@ const Transaction = ({
     <li className="relative group flex gap-3 sm:gap-5 border-b px-6 py-5 items-center justify-between text-sm overflow-hidden">
       <div className="flex gap-5 md:gap-8">
         <svg
-          className={status === "pending" ? "size-5 text-amber-300" : "hidden"}
+          className={
+            status === Status.pending ? "size-5 text-amber-300" : "hidden"
+          }
           fill="currentColor"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 496 512"
@@ -20,7 +23,9 @@ const Transaction = ({
           <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z" />
         </svg>
         <svg
-          className={status === "success" ? "size-5 text-green-500" : "hidden"}
+          className={
+            status === Status.completed ? "size-5 text-green-500" : "hidden"
+          }
           fill="currentColor"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 448 512"

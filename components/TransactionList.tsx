@@ -1,5 +1,8 @@
+"use client";
+
 import { TransactionEntry } from "@/types/commonTypes";
-import React from "react";
+import { Status } from "@/types/enumTypes";
+import React, { useState } from "react";
 import Button from "./Button";
 import FilterButton from "./FilterButton";
 import Transaction from "./Transaction";
@@ -9,14 +12,19 @@ const TransactionList = ({
 }: {
   transactions: TransactionEntry[];
 }) => {
+  const [filter, setFilter] = useState<Status | "All">("All");
+
   const handleClickPending = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setFilter(Status.pending);
     console.log("Button clicked in ParentComponent", event);
   };
 
-  const handleClickSuccess = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClickCompleted = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setFilter(Status.completed);
     console.log("Button clicked in ParentComponent", event);
   };
   const handleClickClear = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setFilter("All");
     console.log("Button clicked in ParentComponent", event);
   };
 
@@ -31,25 +39,36 @@ const TransactionList = ({
         <div className="flex gap-5">
           <FilterButton
             handleClick={handleClickPending}
-            text="Pending"
+            text={Status.pending}
             color="amber"
+            filter={filter}
           />
           <FilterButton
-            handleClick={handleClickSuccess}
-            text="Success"
+            handleClick={handleClickCompleted}
+            text={Status.completed}
             color="green"
+            filter={filter}
           />
           <FilterButton
             handleClick={handleClickClear}
-            text="Clear"
+            text="All"
             color="slate"
+            filter={filter}
           />
         </div>
       </div>
       <ol className="flex flex-col">
-        {transactions.map((transaction) => (
-          <Transaction key={transaction.id} transaction={transaction} />
-        ))}
+        {transactions
+          .filter((transaction) => {
+            if (filter !== "All") {
+              return transaction.status === filter;
+            } else {
+              return true;
+            }
+          })
+          .map((transaction) => (
+            <Transaction key={transaction.id} transaction={transaction} />
+          ))}
       </ol>
       <div className="px-6 py-10 flex justify-end items-center h-16">
         <Button handleClick={handleClickSeeMore} text="See More" />

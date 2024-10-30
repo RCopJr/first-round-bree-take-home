@@ -3,6 +3,7 @@ import BalanceAmount from "@/components/BalanceAmount";
 import Button from "@/components/Button";
 import TransactionList from "@/components/TransactionList";
 import { TransactionEntry } from "@/types/commonTypes";
+import { Status } from "@/types/enumTypes";
 
 const transactions: TransactionEntry[] = [
   {
@@ -12,7 +13,7 @@ const transactions: TransactionEntry[] = [
     amount: 100,
     balance: 340,
     repaymentDate: new Date(),
-    status: "pending",
+    status: Status.pending,
   },
   {
     id: 2,
@@ -21,7 +22,7 @@ const transactions: TransactionEntry[] = [
     amount: 10,
     balance: 340,
     repaymentDate: new Date(),
-    status: "pending",
+    status: Status.pending,
   },
   {
     id: 3,
@@ -30,7 +31,7 @@ const transactions: TransactionEntry[] = [
     amount: 10,
     balance: 340,
     repaymentDate: new Date(),
-    status: "success",
+    status: Status.completed,
   },
   {
     id: 4,
@@ -39,7 +40,7 @@ const transactions: TransactionEntry[] = [
     amount: 10,
     balance: 340,
     repaymentDate: new Date(),
-    status: "success",
+    status: Status.completed,
   },
   {
     id: 5,
@@ -48,7 +49,7 @@ const transactions: TransactionEntry[] = [
     amount: 10,
     balance: 340,
     repaymentDate: new Date(),
-    status: "success",
+    status: Status.completed,
   },
 ];
 
