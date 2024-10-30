@@ -69,7 +69,7 @@ const RequestAdvanceModal = ({
               placeholder="Enter Dollar Amount"
               value={"$" + requestedAmount}
               onChange={handleRequestAmountInputChange}
-              className="w-1/2 border border-gray-300 rounded-lg px-4 py-2 text-5xl font-extrabold"
+              className="w-5/6 sm:w-1/2 border border-gray-300 rounded-lg px-4 py-2 text-5xl font-extrabold"
             />
             {errorMessage && <ErrorAlert text={errorMessage} />}
           </div>
