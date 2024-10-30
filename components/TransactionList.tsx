@@ -2,7 +2,7 @@
 
 import { TransactionEntry } from "@/types/commonTypes";
 import { Status } from "@/types/enumTypes";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import Button from "./Button";
 import FilterButton from "./FilterButton";
 import Transaction from "./Transaction";
@@ -15,6 +15,16 @@ const TransactionList = ({
   const [filter, setFilter] = useState<Status | "All">("All");
   const [numberOfViewableTransactions, setNumberOfViewableTransactions] =
     useState<number>(5);
+
+  const visibleTransactions = useMemo(() => {
+    return transactions.filter((transaction) => {
+      if (filter !== "All") {
+        return transaction.status === filter;
+      } else {
+        return true;
+      }
+    });
+  }, [filter, transactions, numberOfViewableTransactions]);
 
   const handleClickSeeMore = (event: React.MouseEvent<HTMLButtonElement>) => {
     setNumberOfViewableTransactions(
@@ -48,21 +58,14 @@ const TransactionList = ({
         </div>
       </div>
       <ol className="flex flex-col">
-        {transactions
+        {visibleTransactions
           .slice(0, numberOfViewableTransactions)
-          .filter((transaction) => {
-            if (filter !== "All") {
-              return transaction.status === filter;
-            } else {
-              return true;
-            }
-          })
           .map((transaction) => (
             <Transaction key={transaction.id} transaction={transaction} />
           ))}
       </ol>
       <div className="px-6 py-10 flex justify-end items-center h-16">
-        {transactions.length > 5 && (
+        {visibleTransactions.length > numberOfViewableTransactions && (
           <Button handleClick={handleClickSeeMore} text="See More" />
         )}
       </div>
