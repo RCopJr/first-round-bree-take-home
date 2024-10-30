@@ -13,23 +13,13 @@ const TransactionList = ({
   transactions: TransactionEntry[];
 }) => {
   const [filter, setFilter] = useState<Status | "All">("All");
-
-  const handleClickPending = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setFilter(Status.pending);
-    console.log("Button clicked in ParentComponent", event);
-  };
-
-  const handleClickCompleted = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setFilter(Status.completed);
-    console.log("Button clicked in ParentComponent", event);
-  };
-  const handleClickClear = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setFilter("All");
-    console.log("Button clicked in ParentComponent", event);
-  };
+  const [numberOfViewableTransactions, setNumberOfViewableTransactions] =
+    useState<number>(5);
 
   const handleClickSeeMore = (event: React.MouseEvent<HTMLButtonElement>) => {
-    console.log("Button clicked in ParentComponent", event);
+    setNumberOfViewableTransactions(
+      (prevNumberOfViewableTransactions) => prevNumberOfViewableTransactions + 5
+    );
   };
 
   return (
@@ -38,19 +28,19 @@ const TransactionList = ({
         <h1>Transactions</h1>
         <div className="flex gap-5">
           <FilterButton
-            handleClick={handleClickPending}
+            handleClick={() => setFilter(Status.pending)}
             text={Status.pending}
             color="amber"
             filter={filter}
           />
           <FilterButton
-            handleClick={handleClickCompleted}
+            handleClick={() => setFilter(Status.completed)}
             text={Status.completed}
             color="green"
             filter={filter}
           />
           <FilterButton
-            handleClick={handleClickClear}
+            handleClick={() => setFilter("All")}
             text="All"
             color="slate"
             filter={filter}
@@ -59,6 +49,7 @@ const TransactionList = ({
       </div>
       <ol className="flex flex-col">
         {transactions
+          .slice(0, numberOfViewableTransactions)
           .filter((transaction) => {
             if (filter !== "All") {
               return transaction.status === filter;
@@ -71,7 +62,9 @@ const TransactionList = ({
           ))}
       </ol>
       <div className="px-6 py-10 flex justify-end items-center h-16">
-        <Button handleClick={handleClickSeeMore} text="See More" />
+        {transactions.length > 5 && (
+          <Button handleClick={handleClickSeeMore} text="See More" />
+        )}
       </div>
     </div>
   );

@@ -46,7 +46,7 @@ const Transaction = ({
           ${formatToDollar(balance)}
         </span>
       </div>
-      <div className="flex gap-5 justify-start items-center absolute top-0 right-0 w-0 h-full bg-white z-10 transition-width duration-300 ease-in-out rounded-lg border group-hover:w-full sm:group-hover:w-1/2">
+      <div className="flex gap-5 justify-start items-center absolute top-0 right-0 w-0 h-full bg-white z-10 transition-all duration-300 ease-in-out rounded-lg border group-hover:w-full sm:group-hover:w-1/2">
         <span className="ml-6">ID: {id}</span>
         <span>Repayment Date: {formatDate(repaymentDate)}</span>
       </div>
