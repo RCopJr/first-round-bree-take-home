@@ -99,7 +99,7 @@ export default function Home() {
   };
 
   return (
-    <div className="h-full flex flex-col justify-between">
+    <div className="min-h-screen flex flex-col justify-between">
       <Header />
       <main className="w-5/6 md:w-3/4 xl:w-2/3 2xl:w-1/2 flex flex-col items-center gap-10 my-20 mx-auto">
         <div className="w-full flex justify-center sm:justify-start sm:gap-14">
